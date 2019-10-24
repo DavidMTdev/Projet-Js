@@ -1,5 +1,8 @@
 new Vue({
 	el      : '#app',
-	data    : {},
+	data    : {
+		teamPlayer : [],
+		teamIA     : []
+	},
 	methods : {}
 });
