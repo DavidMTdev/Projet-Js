@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Combat</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../assets/js/battle.js" async></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -18,99 +19,83 @@
             <img class="bg-img" src="../assets/img/Animation Backgrounds_ BROTHER BEAR part two.jpg">
         </div>
         <div class="window-battle">
-            <div class="enemy">
+            <div v-if="play" class="enemy">
                 <ul class="team">
-                    <li>
+                    <li v-if="value.life > 0" v-for="value in teamIA">
                         <button class="btn-img">
                             <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
+                            <img class="team-pokemon" :src="value.pokemon.sprites.front_default">
                         </button>
                     </li>
                 </ul>
             </div>
-            <div class="battle-pokemon">
+            <div v-if="play" class="battle-pokemon">
                 <div class="console"></div>
-                <div class="ia-pokemon">
-                    <div class="life"></div>
-                    <img src="">
+                <div v-for="value in teamIA" v-if="value.active" class="ia-pokemon">
+                    <div class="max-life-ia">
+                        <div v-if="value.life == value.pokemon.stats[5].base_stat" class="life life-100">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 75) / 100)"
+                            class="life life-75">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 50) / 100)"
+                            class="life life-50">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 25) / 100)"
+                            class="life life-25">
+                            {{ value.life }}</div>
+                        <div v-else="value.life <= 0" class="life life-0">
+                            {{ value.life }}</div>
+                    </div>
+                    <img :src="value.pokemon.sprites.front_default">
                 </div>
-                <div class="player-pokemon">
-                    <div class="life"></div>
-                    <img src="" alt="">
+                <div v-for="value in teamPlayer" v-if="value.active" class="player-pokemon">
+                    <div class="max-life-ia">
+                        <div v-if="value.life == value.pokemon.stats[5].base_stat" class="life life-100">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 75) / 100)"
+                            class="life life-75">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 50) / 100)"
+                            class="life life-50">
+                            {{ value.life }}</div>
+                        <div v-else-if="value.life >= ((value.pokemon.stats[5].base_stat * 25) / 100)"
+                            class="life life-25">
+                            {{ value.life }}</div>
+                        <div v-else="value.life <= 0" class="life life-0">
+                            {{ value.life }}</div>
+                    </div>
+                    <img :src="value.pokemon.sprites.back_default">
                 </div>
-                <div class="stats">
+                <div v-for="value in teamPlayer" v-if="value.active" class="stats">
                     <div class="column">
-                        <div class="hp">{{ "hp : 99" }}</div>
-                        <div class="attack">{{ "attaque : 99" }}</div>
-                        <div class="defense">{{ "défense : 999" }}</div>
+                        <div class="hp">{{ "hp : " + value.pokemon.stats[5].base_stat}}</div>
+                        <div class="attack">{{ "attaque : " + value.pokemon.stats[4].base_stat}}</div>
+                        <div class="defense">{{ "défense : " + value.pokemon.stats[3].base_stat}}</div>
                     </div>
                     <div class="column">
-                        <div class="special-attack">{{ "attaque spé : 99" }}</div>
-                        <div class="special-defense">{{ "défense spé : 99" }}</div>
-                        <div class="speed">{{ "vitesse : 99" }}</div>
+                        <div class="special-attack">{{ "attaque spé : " + value.pokemon.stats[2].base_stat}}</div>
+                        <div class="special-defense">{{ "défense spé : " + value.pokemon.stats[1].base_stat}}</div>
+                        <div class="speed">{{ "vitesse : " + value.pokemon.stats[0].base_stat }}</div>
                     </div>
                 </div>
-                <div class="btn-attack">
-                    <button>ATTAQUE</button>
+                <div v-if="round" class="btn-attack">
+                    <button @click="attack()">ATTAQUE</button>
                 </div>
             </div>
-            <div class="player">
+            <div v-if="play" class="player">
                 <ul class="team">
-                    <li>
-                        <button class="btn-img">
+                    <li v-if="value.life > 0" v-for="(value, index) in teamPlayer">
+                        <button @click="change(index)" class="btn-img">
                             <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn-img">
-                            <img class="bg-img" src="../assets/img//pokeball-image-1-transparent.png">
-                            <img class="team-pokemon" src="../assets/img/2.png">
+                            <img class="team-pokemon" :src="value.pokemon.sprites.front_default">
                         </button>
                     </li>
                 </ul>
+            </div>
+            <div v-if="!play" class="game-over">
+                <h3 v-if="win">Vous avez Gagner</h3>
+                <h3 v-if="defeat">Vous avez perdu</h3>
             </div>
         </div>
     </div>

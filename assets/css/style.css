@@ -57,6 +57,7 @@ window-battle:nth-child(2) {
 .player .team {
 	display: flex;
 	justify-content: flex-start;
+	z-index: 1003;
 }
 
 .team li {
@@ -111,4 +112,82 @@ window-battle:nth-child(2) {
 
 .column div {
 	padding: 5px 0;
+}
+
+.ia-pokemon img {
+	width: 300px;
+	height: 300px;
+}
+
+.ia-pokemon {
+	position: absolute;
+	top: 80px;
+	right: 160px;
+}
+
+.max-life-ia {
+	height: 10px;
+	width: 100px;
+	background: #dc0d0d;
+	position: absolute;
+	top: 20px;
+	right: 110px;
+}
+
+.player-pokemon img {
+	width: 300px;
+	height: 300px;
+}
+
+.player-pokemon {
+	position: absolute;
+	bottom: -50px;
+	left: 200px;
+	z-index: 1001;
+}
+
+.max-life-player {
+	height: 10px;
+	width: 100px;
+	background: #dc0d0d;
+	position: absolute;
+	top: 20px;
+	right: 110px;
+}
+
+.life {
+	height: 100%;
+	background: #07b129;
+}
+
+.life-100 {
+	width: 100%;
+}
+
+.life-75 {
+	width: 75%;
+}
+
+.life-50 {
+	width: 50%;
+}
+
+.life-25 {
+	width: 25%;
+}
+
+.life-0 {
+	width: 0%;
+}
+
+.game-over {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.game-over h3 {
+	font-size: 3.5em;
+	color: #e7e7e7;
 }
