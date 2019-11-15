@@ -1,0 +1,193 @@
+* {
+	font-family: 'Courier New', Courier, monospace;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#app {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.bg-img {
+	width: 100%;
+	height: 100%;
+}
+
+.window-battle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1000px;
+	height: 600px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-img {
+	width: 64px;
+	height: 64px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	position: relative;
+	z-index: 1004;
+}
+
+window-battle:nth-child(2) {
+	z-index: 1003;
+}
+
+.enemy {
+	margin-top: 10px;
+}
+
+.enemy .team {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.player {
+	margin-bottom: 10px;
+}
+
+.player .team {
+	display: flex;
+	justify-content: flex-start;
+	z-index: 1003;
+}
+
+.team li {
+	margin: 0 20px;
+}
+
+.team-pokemon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90px;
+	height: 90px;
+	transform: translate(-45%, -50%);
+}
+
+.battle-pokemon {
+	width: 100%;
+	height: calc(100% - 78.80px - 78.80px);
+	position: relative;
+}
+
+.btn-attack {
+	position: absolute;
+	bottom: -53px;
+	right: 60px;
+	z-index: 1004;
+}
+
+.btn-attack button {
+	color: #e7e7e7;
+	background: transparent;
+	padding: 20px 30px;
+	border: 2px solid #e7e7e7;
+	box-sizing: border-box;
+	border-radius: 50px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.stats {
+	position: absolute;
+	display: flex;
+	bottom: -60px;
+	right: 210px;
+	color: #e7e7e7;
+	font-size: 12px;
+}
+
+.column {
+	margin: 0 10px;
+}
+
+.column div {
+	padding: 5px 0;
+}
+
+.ia-pokemon img {
+	width: 300px;
+	height: 300px;
+}
+
+.ia-pokemon {
+	position: absolute;
+	top: 80px;
+	right: 160px;
+}
+
+.max-life-ia {
+	height: 10px;
+	width: 100px;
+	background: #dc0d0d;
+	position: absolute;
+	top: 20px;
+	right: 110px;
+}
+
+.player-pokemon img {
+	width: 300px;
+	height: 300px;
+}
+
+.player-pokemon {
+	position: absolute;
+	bottom: -50px;
+	left: 200px;
+	z-index: 1001;
+}
+
+.max-life-player {
+	height: 10px;
+	width: 100px;
+	background: #dc0d0d;
+	position: absolute;
+	top: 20px;
+	right: 110px;
+}
+
+.life {
+	height: 100%;
+	background: #07b129;
+}
+
+.life-100 {
+	width: 100%;
+}
+
+.life-75 {
+	width: 75%;
+}
+
+.life-50 {
+	width: 50%;
+}
+
+.life-25 {
+	width: 25%;
+}
+
+.life-0 {
+	width: 0%;
+}
+
+.game-over {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.game-over h3 {
+	font-size: 3.5em;
+	color: #e7e7e7;
+}
