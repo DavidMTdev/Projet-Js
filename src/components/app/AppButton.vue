@@ -1,5 +1,7 @@
 <template>
-  <button @click="$emit('buttonAction')"></button>
+  <div>
+    <button @click="$emit('buttonAction')">ATTAQUE</button>
+  </div>
 </template>
 
 <script>

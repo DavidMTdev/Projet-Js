@@ -1,17 +1,15 @@
 <template>
   <div v-cloak>
-    <PokeBattle></PokeBattle>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import PokeBattle from "@/pages/PokeBattle";
+// import Home from "@/pages/Home";
 
 export default {
   name: "app",
-  components: {
-    PokeBattle
-  }
+  components: {}
 };
 </script>
 
@@ -20,8 +18,5 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
