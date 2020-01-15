@@ -1,21 +1,22 @@
 <template>
  <div id="app">
 
-        <h1 class="titre">POKEDEX</h1>
+        <!-- <h1 class="titre">POKEDEX</h1> -->
+         <router-link  to="/">Page d'accueil</router-link>
 
-        <div class="search">
+        <!-- <div class="search">
             <label for="recherche">RECHERCHEZ SUR NOTRE POKEDEX :</label>
             <br>
             <input type="search" id="recherche" name="#">
             <br>
 
             <button>recherche</button>
-        </div>
+        </div> -->
 
         <div class="main">
 
             <div v-for="pokemon in pokemons" :key="pokemon.id" class="container">
-            <router-link :to="`/pokemon/${ pokemon.id }`">Page d'accueil</router-link>
+            <router-link :to="`/pokemon/${ pokemon.id }`">Caractéristiques</router-link>
                 <h3>{{ pokemon.name }}</h3>
                 <img :src="pokemon.sprites.front_default" />
                 <div v-for="abilitys in pokemon.abilities"  :key="abilitys.name" class="ability">

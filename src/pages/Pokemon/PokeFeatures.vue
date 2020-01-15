@@ -1,16 +1,16 @@
 <template>
   <div>
     <div v-for="abilitie in poke.abilities"  :key="abilitie.ability.name" class="ability">
-                    <p>{{ abilitie.ability.name  }}</p>
+                    <p>Habilité : {{ abilitie.ability.name  }}</p>
                 </div>
                 <div>
-                    <p>{{ poke.height  }}</p>
+                    <p>taille : {{ poke.height  }}</p>
                 </div>
                 <div>
-                    <p>{{ poke.weight  }}</p>
+                    <p>poids : {{ poke.weight  }}</p>
                 </div>
                 <div  v-for="value in poke.types"  :key="value.id">
-                    <p>{{ value.type.name  }}</p>
+                    <p>type : {{ value.type.name  }}</p>
                 </div>
   </div>
 </template>

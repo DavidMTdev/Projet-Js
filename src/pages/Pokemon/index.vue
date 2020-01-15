@@ -1,6 +1,9 @@
 <template>
  <div id="app">
-        <h1 class="titre">POKEDEX</h1>
+        <!-- <h1 class="titre">POKEDEX</h1> -->
+                <router-link  to="/pokedex">
+          Retourner au Pokedex
+        </router-link>
         <div class="main">
             <div  class="container">
                 <h3>{{ pokemon.name }}</h3>

@@ -196,7 +196,7 @@ export default {
                     element2.life -= element.pokemon.stats[4].base_stat;
 
                     //Changement de pokemon active du joueur pour le combat si l'autre est mort
-                    if (element2.life < 0) {
+                    if (element2.life <= 0) {
                       //on supprime l'ellement si le pokemon du joeur est mort
                       this.$delete(this.teamPlayer, index2);
 
